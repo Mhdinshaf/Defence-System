@@ -55,5 +55,14 @@ public class Controller {
         }
     }
 
+    void sendMsgPrivate(String name, String msg) {
+        for (int i = 0; i <nextIndex; i++) {
+            DefenceObserver ob=obsArray[i];
+            ob.setPrivateMsg(name,msg );
+        }
+    }
+
+    
+
     
 }

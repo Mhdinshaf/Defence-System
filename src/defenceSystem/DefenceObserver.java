@@ -7,8 +7,9 @@ public interface DefenceObserver {
     public void getMsgHeli(String msg);
     public void getMsgTank(String msgTank);
     public void getMsgSub(String msgSub);
-
     public void setPosition(int value);
+    public void setPrivateMsg(String name, String msg);
+
    
     
     
