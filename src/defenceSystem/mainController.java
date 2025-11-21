@@ -34,7 +34,7 @@ private Controller controlRoom;
         jScrollPane4 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        chkSendprivate = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         btnSend = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -49,7 +49,7 @@ private Controller controlRoom;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CmbSelectDevice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CmbSelectDevice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Device", "Helicopter", "Tank", "Sub Marine" }));
+        CmbSelectDevice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Helicopter", "Tank", "Sub Marine" }));
         CmbSelectDevice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbSelectDeviceActionPerformed(evt);
@@ -90,10 +90,10 @@ private Controller controlRoom;
         jLabel2.setText("Ammo Amount");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jCheckBox2.setText("Send Private");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        chkSendprivate.setText("Send Private");
+        chkSendprivate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                chkSendprivateActionPerformed(evt);
             }
         });
 
@@ -170,7 +170,7 @@ private Controller controlRoom;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSend)
-                            .addComponent(jCheckBox2))
+                            .addComponent(chkSendprivate))
                         .addGap(241, 241, 241))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
@@ -216,7 +216,7 @@ private Controller controlRoom;
                         .addComponent(txtMainfield)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2)
+                    .addComponent(chkSendprivate)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel4)))
@@ -274,13 +274,20 @@ private Controller controlRoom;
             controlRoom.setArea(areaClear);
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void chkSendprivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSendprivateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_chkSendprivateActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
                 String msg=txtMainfield.getText();
+                if(chkSendprivate.isSelected()){
+                    String name=CmbSelectDevice.getSelectedItem().toString();
+                    controlRoom.sendMsgPrivate(name,"Main Controller : "+msg);
+                    
+                }else{
                 controlRoom.setMsg(msg);
+                
+                }
    
     }//GEN-LAST:event_btnSendActionPerformed
 
@@ -289,7 +296,8 @@ private Controller controlRoom;
     }//GEN-LAST:event_txtMainfieldActionPerformed
 
     private void CmbSelectDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbSelectDeviceActionPerformed
-        
+             
+                
     }//GEN-LAST:event_CmbSelectDeviceActionPerformed
 
     private void sliderPositionStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderPositionStateChanged
@@ -301,9 +309,9 @@ private Controller controlRoom;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CmbSelectDevice;
     private javax.swing.JButton btnSend;
+    private javax.swing.JCheckBox chkSendprivate;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -350,4 +358,11 @@ private Controller controlRoom;
     public void setPosition(int value) {
         
     }
+
+    @Override
+    public void setPrivateMsg(String name, String msg) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
 }
